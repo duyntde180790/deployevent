@@ -3,66 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Detail</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-      body {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #ffffff 0%, #5f0a87 100%);
-      }
-      .event-detail-card {
-        background: rgba(255,255,255,0.95);
-        border-radius: 1.5rem;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
-        padding: 2rem 2rem 1.5rem 2rem;
-        margin-top: 2rem;
-        border: 1px solid rgba(255,255,255,0.18);
-      }
-      .event-title {
-        color: #fe0000;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
-      .btn-gradient {
-        background: linear-gradient(90deg, #18bce1 0%, #5f0a87 100%);
-        border: none;
-        color: #af1b1b;
-        font-weight: 600;
-        transition: background 0.3s;
-      }
-      .btn-gradient:hover {
-        background: linear-gradient(90deg, #5f0a87 0%, #a4508b 100%);
-        color: #fff;
-      }
-    </style>
+    <title>Chi tiết sự kiện</title>
+    <%- include('partials/style.ejs') %>
 </head>
 <body>
+    <div class="header">Hệ thống sự kiện - Chi tiết sự kiện</div>
     <%- include('partials/studentNav') %>
     <div class="container">
-        <div class="event-detail-card">
-            <h2 class="event-title">Event Detail</h2>
-            <% if (typeof message !== 'undefined') { %>
-                <div class="alert alert-info"><%= message %></div>
-            <% } %>
-            <% if (event) { %>
-                <div class="card border-0 bg-transparent">
-                    <div class="card-body">
-                        <h4 class="card-title" style="color:#a4508b"><%= event.name %></h4>
-                        <p class="card-text"><strong>Description:</strong> <%= event.description %></p>
-                        <p class="card-text"><strong>Date:</strong> <%= event.date ? new Date(event.date).toLocaleString() : '' %></p>
-                        <p class="card-text"><strong>End Date:</strong> <%= event.endDate ? new Date(event.endDate).toLocaleString() : '' %></p>
-                        <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
-                        <p class="card-text"><strong>Max Capacity:</strong> <%= event.maxCapacity %></p>
-                        <p class="card-text"><strong>Registered:</strong> <%= registered %></p>
-                    </div>
-                </div>
-            <% } else { %>
-                <div class="alert alert-danger">Event not found</div>
-            <% } %>
-            <a href="/register-event" class="btn btn-gradient mt-3">Back to Events</a>
-        </div>
+        <h2 style="text-align:center; margin-bottom: 24px;">Chi tiết sự kiện</h2>
+        <% if (typeof message !== 'undefined') { %>
+            <div class="alert"><%= message %></div>
+        <% } %>
+        <% if (event) { %>
+            <div>
+                <h3><%= event.name %></h3>
+                <p><strong>Mô tả:</strong> <%= event.description %></p>
+                <p><strong>Ngày bắt đầu:</strong> <%= event.date ? new Date(event.date).toLocaleString() : '' %></p>
+                <p><strong>Ngày kết thúc:</strong> <%= event.endDate ? new Date(event.endDate).toLocaleString() : '' %></p>
+                <p><strong>Địa điểm:</strong> <%= event.location %></p>
+                <p><strong>Số lượng tối đa:</strong> <%= event.maxCapacity %></p>
+                <p><strong>Đã đăng ký:</strong> <%= registered %></p>
+            </div>
+        <% } else { %>
+            <div class="alert">Không tìm thấy sự kiện</div>
+        <% } %>
+        <a href="/register-event" class="btn" style="margin-top:16px;">Quay lại danh sách sự kiện</a>
     </div>
 </body>
 </html> 

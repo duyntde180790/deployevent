@@ -1,40 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark admin-gradient-nav mb-4">
-  <style>
-    .admin-gradient-nav {
-      background: linear-gradient(90deg, #5f0a87 0%, #a4508b 100%) !important;
-    }
-    .btn-logout-admin {
-      background: linear-gradient(90deg, #5f0a87 0%, #a4508b 100%);
-      border: none;
-      color: #fff;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .btn-logout-admin:hover {
-      background: linear-gradient(90deg, #a4508b 0%, #5f0a87 100%);
-      color: #fff;
-    }
-  </style>
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/admin/list-registrations">Admin Panel</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav" aria-controls="adminNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="adminNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/list-registrations">List Registrations</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/search-registrations">Search Registrations</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/create-event">Create Event</a>
-        </li>
-      </ul>
-      <form class="d-flex" method="POST" action="/logout">
-        <button class="btn btn-logout-admin" type="submit">Logout</button>
-      </form>
-    </div>
-  </div>
+<nav class="nav" style="margin-bottom: 24px;">
+  <a href="/admin/list-registrations">Quản lý đăng ký</a>
+  <a href="/admin/search-registrations">Tìm kiếm đăng ký</a>
+  <a href="/admin/create-event">Tạo sự kiện</a>
+  <form method="POST" action="/logout" style="display:inline; margin:0;">
+    <button class="btn" type="submit" style="margin-left:8px;">Đăng xuất</button>
+  </form>
 </nav> 
