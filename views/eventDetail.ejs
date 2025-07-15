@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #a4508b 0%, #5f0a87 100%);
+      }
+      .event-detail-card {
+        background: rgba(255,255,255,0.95);
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        padding: 2rem 2rem 1.5rem 2rem;
+        margin-top: 2rem;
+        border: 1px solid rgba(255,255,255,0.18);
+      }
+      .event-title {
+        color: #5f0a87;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .btn-gradient {
+        background: linear-gradient(90deg, #a4508b 0%, #5f0a87 100%);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+      .btn-gradient:hover {
+        background: linear-gradient(90deg, #5f0a87 0%, #a4508b 100%);
+        color: #fff;
+      }
+    </style>
+</head>
+<body>
+    <%- include('partials/studentNav') %>
+    <div class="container">
+        <div class="event-detail-card">
+            <h2 class="event-title">Event Detail</h2>
+            <% if (typeof message !== 'undefined') { %>
+                <div class="alert alert-info"><%= message %></div>
+            <% } %>
+            <% if (event) { %>
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color:#a4508b"><%= event.name %></h4>
+                        <p class="card-text"><strong>Description:</strong> <%= event.description %></p>
+                        <p class="card-text"><strong>Date:</strong> <%= event.date ? new Date(event.date).toLocaleString() : '' %></p>
+                        <p class="card-text"><strong>End Date:</strong> <%= event.endDate ? new Date(event.endDate).toLocaleString() : '' %></p>
+                        <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
+                        <p class="card-text"><strong>Max Capacity:</strong> <%= event.maxCapacity %></p>
+                        <p class="card-text"><strong>Registered:</strong> <%= registered %></p>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="alert alert-danger">Event not found</div>
+            <% } %>
+            <a href="/register-event" class="btn btn-gradient mt-3">Back to Events</a>
+        </div>
+    </div>
+</body>
+</html> 

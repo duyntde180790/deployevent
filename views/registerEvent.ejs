@@ -1,0 +1,94 @@
+<%- include('partials/studentNav') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Event</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #a4508b 0%, #5f0a87 100%);
+      }
+      .reg-event-card {
+        background: rgba(255,255,255,0.95);
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        padding: 2rem 2rem 1.5rem 2rem;
+        margin-top: 2rem;
+        border: 1px solid rgba(255,255,255,0.18);
+      }
+      .reg-event-title {
+        color: #5f0a87;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .btn-gradient {
+        background: linear-gradient(90deg, #a4508b 0%, #5f0a87 100%);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+      .btn-gradient:hover {
+        background: linear-gradient(90deg, #5f0a87 0%, #a4508b 100%);
+        color: #fff;
+      }
+      .text-danger {
+        font-weight: 600;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="reg-event-card">
+            <h2 class="reg-event-title">Available Events</h2>
+            <% if (typeof message !== 'undefined') { %>
+                <div class="alert alert-info"><%= message %></div>
+            <% } %>
+            <% if (events.length === 0) { %>
+                <div class="alert alert-info">No events available.</div>
+            <% } else { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>End Date</th>
+                        <th>Location</th>
+                        <th>Registered/Capacity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% events.forEach(event => { %>
+                    <tr>
+                        <td><a href="/event/<%= event._id %>"><%= event.name %></a></td>
+                        <td><%= event.description %></td>
+                        <td><%= event.date ? event.date.toLocaleString() : '' %></td>
+                        <td><%= event.endDate ? new Date(event.endDate).toLocaleString() : '' %></td>
+                        <td><%= event.location %></td>
+                        <td><%= event.registered %> / <%= event.maxCapacity %></td>
+                        <td>
+                            <% if (event.registered < event.maxCapacity) { %>
+                            <form method="POST" action="/register-event">
+                                <input type="hidden" name="eventId" value="<%= event._id %>">
+                                <button type="submit" class="btn btn-gradient btn-sm">Register</button>
+                            </form>
+                            <% } else { %>
+                            <span class="text-danger">Full</span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html> 

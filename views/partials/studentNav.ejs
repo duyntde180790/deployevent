@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark student-gradient-nav mb-4">
+  <style>
+    .student-gradient-nav {
+      background: linear-gradient(90deg, #a4508b 0%, #5f0a87 100%) !important;
+    }
+    .btn-logout-student {
+      background: linear-gradient(90deg, #a4508b 0%, #5f0a87 100%);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn-logout-student:hover {
+      background: linear-gradient(90deg, #5f0a87 0%, #a4508b 100%);
+      color: #fff;
+    }
+  </style>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/register-event">Student Panel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#studentNav" aria-controls="studentNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="studentNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/register-event">Register Event</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/my-registrations">My Registrations</a>
+        </li>
+      </ul>
+      <form class="d-flex" method="POST" action="/logout">
+        <button class="btn btn-logout-student" type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+</nav> 
